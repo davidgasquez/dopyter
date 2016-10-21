@@ -1,0 +1,8 @@
+{
+  "NotebookApp": {
+    "nbserver_extensions": {
+      "nb_conda": true,
+      "jupyter_nbextensions_configurator": true
+    }
+  }
+}
