@@ -12,19 +12,21 @@ RUN apt-get update -y && \
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -f -b -p /opt/conda && \
-    rm ~/miniconda.sh && \
-    opt/conda/bin/conda install --quiet --yes conda && \
-    # opt/conda/bin/conda config --system --add channels conda-forge && \
-    opt/conda/bin/conda clean -tipsy
+    rm ~/miniconda.sh
 
 # Add Conda to path
 ENV PATH /opt/conda/bin:$PATH
+
+# RUN conda config --system --add channels conda-forge && \
+RUN conda install --quiet --yes conda anaconda conda-env
+    # conda clean -tipsy
 
 # Copy requirements file
 COPY requirements.yml /tmp/requirements.yml
 
 # Install requirements into current environment
 RUN conda env update -f /tmp/requirements.yml && \
+    conda remove _nb_ext_conf && \
     rm -rf /root/.cache/pip/*
 
 # Enable Jupyter Notebook extensions
