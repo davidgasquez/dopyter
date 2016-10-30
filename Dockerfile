@@ -17,9 +17,11 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 # Add Conda to path
 ENV PATH /opt/conda/bin:$PATH
 
-# RUN conda config --system --add channels conda-forge && \
-RUN conda install --quiet --yes conda anaconda conda-env
-    # conda clean -tipsy
+# RUN conda config --system --add channels conda-forge
+
+# Install Anaconda
+RUN conda install --quiet --yes conda anaconda conda-env && \
+    conda clean -tipsy
 
 # Copy requirements file
 COPY requirements.yml /tmp/requirements.yml
