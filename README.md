@@ -7,7 +7,7 @@ Opinionated mix of Docker + Python + Jupyter for Data Analysis
 If you're familiar with Docker and have it configured you can run:
 
 ```bash
-docker run -p 8888:8888 -it --rm davidgasquez/dopyter
+docker run -p 8888:8888 -v $(PWD):/work -it --rm davidgasquez/dopyter
 ```
 
 This line will spawn Jupyter in `localhost:8888`.
