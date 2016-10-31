@@ -47,5 +47,8 @@ RUN jupyter nbextension enable collapsible_headings/main && \
 # Add custom configuration
 COPY config/jupyter_notebook_config.py config/jupyter_notebook_config.json /root/.jupyter/
 
+# Create folder
+WORKDIR "/work"
+
 # Start Notebook
 CMD jupyter-notebook
