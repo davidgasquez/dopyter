@@ -17,8 +17,6 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 # Add Conda to path
 ENV PATH /opt/conda/bin:$PATH
 
-# RUN conda config --system --add channels conda-forge
-
 # Install Anaconda
 RUN conda install --quiet --yes conda anaconda conda-env && \
     conda clean -tipsy
@@ -26,7 +24,7 @@ RUN conda install --quiet --yes conda anaconda conda-env && \
 # Copy requirements file
 COPY requirements.yml /tmp/requirements.yml
 
-# Install requirements into current environment
+# Install requirements into current environment .
 RUN conda env update -f /tmp/requirements.yml && \
     conda remove _nb_ext_conf && \
     rm -rf /root/.cache/pip/*
