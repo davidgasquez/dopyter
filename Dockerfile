@@ -8,14 +8,27 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install and update Miniconda
-RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -f -b -p /opt/conda && \
-    rm ~/miniconda.sh
+ENV CONDA_DIR /opt/conda
+ENV PATH $CONDA_DIR/bin:$PATH
+ENV NB_USER local
+ENV NB_UID 1000
 
-# Add Conda to path
-ENV PATH /opt/conda/bin:$PATH
+# Create local user with UID=1000 and in the 'users' group
+RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
+    mkdir -p $CONDA_DIR && \
+    chown $NB_USER $CONDA_DIR
+
+USER $NB_USER
+
+# Setup local home directory
+RUN mkdir /home/$NB_USER/work && \
+    mkdir /home/$NB_USER/.jupyter
+
+# Install and update Miniconda
+# RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
+RUN wget --quiet http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -f -b -p $CONDA_DIR && \
+    rm ~/miniconda.sh
 
 # Install Anaconda
 RUN conda install --quiet --yes conda conda-env && \
@@ -27,10 +40,10 @@ COPY requirements.yml /tmp/requirements.yml
 # Install requirements into current environment .
 RUN conda env update -f /tmp/requirements.yml && \
     conda remove _nb_ext_conf && \
-    rm -rf /root/.cache/pip/*
+    rm -rf /home/$NB_USER/.cache/pip/*
 
 # Enable Jupyter Notebook extensions
-RUN jupyter contrib nbextension install
+RUN jupyter contrib nbextension install --user
 
 # Enable some expecific extensions
 RUN jupyter nbextension enable collapsible_headings/main && \
@@ -43,15 +56,12 @@ RUN jupyter nbextension enable collapsible_headings/main && \
     jupyter nbextensions_configurator enable
 
 # Add custom configuration
-COPY config/jupyter_notebook_config.py config/jupyter_notebook_config.json /root/.jupyter/
+COPY config/jupyter_notebook_config.py config/jupyter_notebook_config.json /home/$NB_USER/.jupyter/
 
 # Create folder
 WORKDIR "/work"
 
 COPY start.sh /tmp/start.sh
 
-ENV USR_ID 0
-ENV GRP_ID 0
-
 # Start Notebook
-CMD /tmp/start.sh
+CMD jupyter notebook
