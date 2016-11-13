@@ -8,6 +8,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Declare environment variables
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
 ENV NB_USER local
@@ -18,6 +19,7 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     mkdir -p $CONDA_DIR && \
     chown $NB_USER $CONDA_DIR
 
+# Switch to local user
 USER $NB_USER
 
 # Setup local home directory
@@ -25,7 +27,6 @@ RUN mkdir /home/$NB_USER/work && \
     mkdir /home/$NB_USER/.jupyter
 
 # Install and update Miniconda
-# RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 RUN wget --quiet http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -f -b -p $CONDA_DIR && \
     rm ~/miniconda.sh
@@ -60,8 +61,6 @@ COPY config/jupyter_notebook_config.py config/jupyter_notebook_config.json /home
 
 # Create folder
 WORKDIR "/work"
-
-COPY start.sh /tmp/start.sh
 
 # Start Notebook
 CMD jupyter notebook
