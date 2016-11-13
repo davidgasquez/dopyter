@@ -4,7 +4,7 @@ MAINTAINER David Gasquez <davidgasquez@gmail.com>
 # Update and install system packages
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y -q \
-        curl build-essential wget bzip2 ca-certificates && \
+        curl build-essential wget bzip2 sudo ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -48,5 +48,10 @@ COPY config/jupyter_notebook_config.py config/jupyter_notebook_config.json /root
 # Create folder
 WORKDIR "/work"
 
+COPY start.sh /tmp/start.sh
+
+ENV USR_ID 0
+ENV GRP_ID 0
+
 # Start Notebook
-CMD jupyter-notebook
+CMD /tmp/start.sh
