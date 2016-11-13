@@ -18,7 +18,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 ENV PATH /opt/conda/bin:$PATH
 
 # Install Anaconda
-RUN conda install --quiet --yes conda anaconda conda-env && \
+RUN conda install --quiet --yes conda conda-env && \
     conda clean -tipsy
 
 # Copy requirements file
