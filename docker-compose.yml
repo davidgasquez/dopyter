@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  dopyter:
+    build: .
+    image: davidgasquez/dopyter:latest
+    container_name: dopyter
+    volumes:
+     - .:/work
+    ports:
+      - "8888:8888"
