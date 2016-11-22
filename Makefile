@@ -1,7 +1,7 @@
 
-NAME = davidgasquez/dopyter
+NAME = davidgasquez/dopyter:latest
 
-.PHONY: all build run clean
+.PHONY: all build run
 
 all: run
 
