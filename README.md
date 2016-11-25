@@ -1,6 +1,6 @@
 # Dopyter
 
-Opinionated mix of Docker + Python + Jupyter for Data Analysis.
+Opinionated mix of Docker + Python + [Jupyter][jupyter] for Data Analysis.
 
 ## Quick Start
 
@@ -11,3 +11,5 @@ docker run -p 8888:8888 -v $PWD:/work -it --rm davidgasquez/dopyter
 ```
 
 This will spawn Jupyter in `localhost:8888`.
+
+[jupyter]: http://jupyter.org/

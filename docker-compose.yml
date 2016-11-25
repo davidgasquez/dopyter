@@ -6,6 +6,6 @@ services:
     image: davidgasquez/dopyter:latest
     container_name: dopyter
     volumes:
-     - .:/work
+      - .:/work
     ports:
       - "8888:8888"
