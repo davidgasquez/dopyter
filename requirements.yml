@@ -11,7 +11,6 @@ dependencies:
     - nltk
     - jupyter
     - pip:
-        - wordcloud
         - nbbrowserpdf
         - jupyter_contrib_nbextensions
         - yapf
