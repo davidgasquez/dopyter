@@ -40,7 +40,6 @@ COPY requirements.yml /tmp/requirements.yml
 
 # Install requirements into current environment .
 RUN conda env update -f /tmp/requirements.yml && \
-    conda remove _nb_ext_conf && \
     rm -rf /home/$NB_USER/.cache/pip/*
 
 # Enable Jupyter Notebook extensions
