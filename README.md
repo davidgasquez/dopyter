@@ -9,7 +9,8 @@ Dopyter is only a docker container which contains Jupyter, and a variety
 of Python 3 [packages][packages] such as numpy, pandas, or scikit-learn, in a
 ready-to-use form. To use Dopyter you'll need to install Docker on your machine.
 
-To launch an instance of Dopyter in the your current folder, run:
+To launch an instance of Dopyter in the your current folder, run
+`docker-compose up` or:
 
 ```bash
 docker run -p 8888:8888 -v $PWD:/work -it --rm davidgasquez/dopyter
