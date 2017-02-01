@@ -13,7 +13,7 @@ To launch an instance of Dopyter in the your current folder, run
 `docker-compose up` or:
 
 ```bash
-docker run -p 8888:8888 -v $PWD:/work -it --rm davidgasquez/dopyter
+docker run -p 8888:8888 -it --rm davidgasquez/dopyter
 ```
 
 This will spawn a Jupyter Notebook in [`localhost:8888`][lh].You can now start

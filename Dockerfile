@@ -19,6 +19,8 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     mkdir -p $CONDA_DIR && \
     chown $NB_USER $CONDA_DIR
 
+RUN mkdir /work && chown $NB_USER /work
+
 # Switch to local user
 USER $NB_USER
 
