@@ -1,15 +1,16 @@
 
-NAME = davidgasquez/dopyter:latest
+IMAGE_NAME := davidgasquez/dopyter:latest
 
-.PHONY: all build run
+.DEFAULT_GOAL := run
 
-all: run
-
+.PHONY: build
 build:
-	docker build -t $(NAME) .
+	docker build -t $(IMAGE_NAME) .
 
+.PHONY: run
 run:
-	docker run -p 8888:8888 -v $(PWD):/work -it --rm $(NAME)
+	docker run -it -p 8888:8888 --rm $(IMAGE_NAME)
 
-bash:
-	docker run -i -t -p 8888:8888 --rm $(NAME) bash
+.PHONY: dev
+dev:
+	docker run -it -p 8888:8888 -v $(PWD):/work --rm $(IMAGE_NAME) bash
