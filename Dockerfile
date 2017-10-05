@@ -4,7 +4,7 @@ MAINTAINER David Gasquez <davidgasquez@gmail.com>
 # Update and install system packages
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y -q \
-        curl build-essential git-core wget bzip2 sudo ca-certificates && \
+        curl build-essential wget bzip2 sudo ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
