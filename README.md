@@ -10,8 +10,7 @@ of Python 3 [packages][packages] such as Numpy, Pandas, or Scikit Learn, in a
 ready-to-use form. To use Dopyter, you'll need to install Docker on your
 machine.
 
-To launch an instance of Dopyter in the your current folder, run
-`docker-compose up` or:
+To launch an instance of Dopyter in the your current folder, run:
 
 ```bash
 docker run -p 8888:8888 -it --rm davidgasquez/dopyter
