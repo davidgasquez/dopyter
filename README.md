@@ -1,5 +1,7 @@
 # Dopyter
 
+[![Build Status](https://travis-ci.org/davidgasquez/dopyter.svg?branch=master)](https://travis-ci.org/davidgasquez/dopyter)
+
 Opinionated mix of Docker + Python + [Jupyter][jupyter] for Data Analysis. This
 project is inspired by the awesome [Jupyter Docker Stacks][docker-stacks].
 
