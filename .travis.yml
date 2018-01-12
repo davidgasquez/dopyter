@@ -8,4 +8,11 @@ before_install:
 
 script:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - make push
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: "make push"
+    on:
+      branch: master
+      tags: true
