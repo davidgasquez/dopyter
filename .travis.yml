@@ -15,4 +15,3 @@ deploy:
     script: "make push"
     on:
       branch: master
-      tags: true
