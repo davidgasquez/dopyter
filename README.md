@@ -1,4 +1,6 @@
-# Dopyter
+<p align="center"><img width=35% src="https://user-images.githubusercontent.com/1682202/36675528-8a1d3fb0-1b09-11e8-900f-074d81fd6ae7.png"></p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
 
 [![Build Status](https://travis-ci.org/davidgasquez/dopyter.svg?branch=master)](https://travis-ci.org/davidgasquez/dopyter)
 
