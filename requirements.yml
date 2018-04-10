@@ -10,8 +10,4 @@ dependencies:
     - scikit-learn
     - joblib
     - nltk
-    - jupyter
-    - pip:
-        - nbbrowserpdf
-        - jupyter_contrib_nbextensions
-        - yapf
+    - jupyterlab

@@ -1,4 +1,3 @@
-
 IMAGE_NAME := davidgasquez/dopyter:latest
 
 .DEFAULT_GOAL := run
@@ -8,7 +7,7 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 .PHONY: run
-run:
+run: build
 	docker run -it -p 8888:8888 --rm $(IMAGE_NAME)
 
 .PHONY: push
