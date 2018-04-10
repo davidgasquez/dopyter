@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:latest
 MAINTAINER David Gasquez <davidgasquez@gmail.com>
 
 # Update and install system packages
@@ -45,23 +45,13 @@ RUN conda env update -f /tmp/requirements.yml && \
     rm -rf /home/$NB_USER/.cache/pip/*
 
 # Enable Jupyter Notebook extensions
-RUN jupyter contrib nbextension install --user
-
-# Enable some expecific extensions
-RUN jupyter nbextension enable collapsible_headings/main && \
-    jupyter nbextension enable spellchecker/main && \
-    jupyter nbextension enable datestamper/main && \
-    jupyter nbextension enable execute_time/ExecuteTime && \
-    jupyter nbextension enable runtools/main && \
-    jupyter nbextension install https://github.com/jfbercher/yapf_ext/archive/master.zip --user && \
-    jupyter nbextension enable yapf_ext-master/yapf_ext && \
-    jupyter nbextensions_configurator enable
+RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 
 # Add custom configuration
-COPY config/jupyter_notebook_config.py config/jupyter_notebook_config.json /home/$NB_USER/.jupyter/
+COPY config/jupyter_notebook_config.py /home/$NB_USER/.jupyter/
 
 # Create folder
 WORKDIR "/work"
 
 # Start Notebook
-CMD jupyter notebook
+CMD jupyter lab
