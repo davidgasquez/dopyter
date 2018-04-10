@@ -26,7 +26,7 @@ You can also pass an `.env` file like this:
 docker run -p 8888:8888 -it --env-file=.env --rm davidgasquez/dopyter
 ```
 
-This will spawn a Jupyter Notebook in [`localhost:8888`][lh].You can now start
+This will spawn Jupyter Lab in [`localhost:8888`][lh]. You can now start
 analyzing, plotting and predicting your fancy data.
 
 [jupyter]: http://jupyter.org/
