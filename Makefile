@@ -4,7 +4,7 @@ IMAGE_NAME := davidgasquez/dopyter:latest
 
 .PHONY: build
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker build --no-cache -t $(IMAGE_NAME) .
 
 .PHONY: run
 run: build
