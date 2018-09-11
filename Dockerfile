@@ -1,10 +1,9 @@
 FROM debian:latest
-MAINTAINER David Gasquez <davidgasquez@gmail.com>
 
 # Update and install system packages
 RUN apt-get update -y && \
     apt-get install --no-install-recommends --allow-unauthenticated -y -q \
-        curl build-essential wget bzip2 sudo ca-certificates && \
+    curl build-essential wget bzip2 sudo ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -51,7 +50,7 @@ RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 COPY config/jupyter_notebook_config.py /home/$NB_USER/.jupyter/
 
 # Create folder
-WORKDIR "/work"
+WORKDIR /work
 
 # Start Notebook
 CMD jupyter lab
