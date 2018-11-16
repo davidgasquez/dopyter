@@ -34,7 +34,8 @@ RUN wget --quiet http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_
 
 # Install Anaconda
 RUN conda install --quiet --yes conda conda-env && \
-    conda clean -tipsy
+    conda clean -tipsy && \
+    conda config --add channels conda-forge
 
 # Copy requirements file
 COPY requirements.yml /tmp/requirements.yml
