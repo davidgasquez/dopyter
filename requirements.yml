@@ -8,7 +8,6 @@ dependencies:
     - requests
     - scipy
     - scikit-learn
-    - apache-beam[gcp]
     - joblib
     - nltk
     - jupyterlab
