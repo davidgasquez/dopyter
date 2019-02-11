@@ -25,7 +25,7 @@ USER $NB_USER
 
 # Setup local home directory
 RUN mkdir /home/$NB_USER/work && \
-    mkdir /home/$NB_USER/.jupyter
+    mkdir -p /home/$NB_USER/.jupyter/
 
 # Install and update Miniconda
 RUN wget --quiet http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -44,11 +44,19 @@ COPY requirements.yml /tmp/requirements.yml
 RUN conda env update -f /tmp/requirements.yml && \
     rm -rf /home/$NB_USER/.cache/pip/*
 
-# Enable Jupyter Notebook extensions
-RUN jupyter serverextension enable --py jupyterlab --sys-prefix
-
 # Add custom configuration
-COPY config/jupyter_notebook_config.py /home/$NB_USER/.jupyter/
+COPY config/ /home/$NB_USER/.jupyter/
+
+# Install extensions
+RUN jupyter labextension install @jupyterlab/git --no-build && \
+    jupyter labextension install @jupyterlab/toc --no-build && \
+    jupyter labextension install @ryantam626/jupyterlab_code_formatter --no-build && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
+    jupyter lab build && \
+    jupyter lab clean && \
+    npm cache clean --force && \
+    rm -rf $HOME/.node-gyp && \
+    rm -rf $HOME/.local
 
 # Create folder
 WORKDIR /work

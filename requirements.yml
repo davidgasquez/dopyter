@@ -1,13 +1,15 @@
 name: root
 
 dependencies:
-    - ipython
-    - numpy
-    - pandas
-    - matplotlib
-    - requests
-    - scipy
-    - scikit-learn
-    - joblib
-    - nltk
-    - jupyterlab
+  - ipython
+  - numpy
+  - pandas
+  - matplotlib
+  - requests
+  - scipy
+  - scikit-learn
+  - joblib
+  - jupyterlab
+  - nodejs
+  - black
+  - ipywidgets
