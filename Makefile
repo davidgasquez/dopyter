@@ -16,7 +16,7 @@ run: build
 
 .PHONY: push
 push:
-	docker push davidgasquez/dopyter:latest
+	docker push $(IMAGE_NAME)
 
 .PHONY: dev
 dev: build
