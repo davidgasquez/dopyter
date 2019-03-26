@@ -1,4 +1,4 @@
-IMAGE_NAME := davidgasquez/dopyter:2.0.0
+IMAGE_NAME := davidgasquez/dopyter:2.1.0
 
 .DEFAULT_GOAL := run
 
