@@ -29,4 +29,6 @@ RUN jupyter labextension install @jupyterlab/git --no-build && \
 WORKDIR /work
 
 # Start Notebook
-CMD jupyter lab
+CMD jupyter lab --allow-root
+
+USER root
