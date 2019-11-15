@@ -1,14 +1,10 @@
 IMAGE_NAME := davidgasquez/dopyter
-IMAGE_VERSION := 2.5.0
+IMAGE_VERSION := 2.5.1
 
 .DEFAULT_GOAL := run
 
 .PHONY: build
 build:
-	docker build -t $(IMAGE_NAME):$(IMAGE_VERSION) -t $(IMAGE_NAME):latest .
-
-.PHONY: build
-build-clean:
 	docker build --no-cache -t $(IMAGE_NAME):$(IMAGE_VERSION) -t $(IMAGE_NAME):latest .
 
 .PHONY: run
