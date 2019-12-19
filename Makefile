@@ -1,5 +1,5 @@
 IMAGE_NAME := davidgasquez/dopyter
-IMAGE_VERSION := 2.5.1
+IMAGE_VERSION := 2.5.3
 
 .DEFAULT_GOAL := run
 
